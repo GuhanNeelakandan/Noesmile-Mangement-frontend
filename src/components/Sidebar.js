@@ -17,7 +17,7 @@ function Sidebar() {
             <hr class="sidebar-divider my-0" />
             <li class="nav-item">
                 <Link class="nav-link" to={"/login"}>
-                    <i class="fas fa-fw "></i>
+                <i class="fa fa-sign-in" aria-hidden="true"></i>
                     <span>Login</span></Link>
             </li>
 
@@ -54,9 +54,6 @@ function Sidebar() {
             <hr class="sidebar-divider d-none d-md-block" />
 
             {/* <!-- Sidebar Toggler (Sidebar) --> */}
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
 
         </ul>
     )

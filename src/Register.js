@@ -1,20 +1,21 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-function Login() {
+function Register() {
   let navigate = useNavigate();
   let formik = useFormik({
     initialValues: {
-      username: '',
+      name: '',
+      email: '',
       password: '',
     },
     onSubmit: async (values) => {
       try {
-        let loginData = await axios.post('https://neosmile-crud.herokuapp.com/login', values);
-        window.localStorage.setItem('myapptoken', loginData.data.token);
-        navigate('/patients');
+        await axios.post('https://neosmile-crud.herokuapp.com/register', values);
+        navigate('/login');
+        alert("Successfully Registerd")
       } catch (error) {
         console.log(error);
         alert('Something went wrong');
@@ -25,37 +26,41 @@ function Login() {
     <div className="container">
       <form onSubmit={formik.handleSubmit}>
         <div className="row">
-          <div className="col-6">
+          <div className="col-lg-12">
+            <label>Name</label>
+            <input
+              type={'text'}
+              name="name"
+              id="name"
+              className="form-control"
+              onChange={formik.handleChange}
+              value={formik.values.name}
+            />
+          </div>
+          <div className="col-lg-12">
             <label>Email</label>
             <input
               type={'email'}
-              className="form-control"
-              name="username"
+              name="email"
               id="username"
+              className="form-control"
               onChange={formik.handleChange}
-              value={formik.values.username}
+              value={formik.values.email}
             />
           </div>
-          <div className="col-6">
+          <div className="col-lg-12">
             <label>Password</label>
             <input
               type={'password'}
-              className="form-control"
               name="password"
               id="password"
+              className="form-control"
               onChange={formik.handleChange}
               value={formik.values.password}
             />
           </div>
-          <div className="col-2 mt-2">
-            <input
-              type={'submit'}
-              className="btn btn-primary"
-              value={'Login'}
-            />
-          </div>
-          <div className="col-2 mt-2">
-            <Link to={'/register'}className="btn btn-primary">SignUp</Link>
+          <div className="col-lg-12 mt-3">
+            <input type={'submit'} className="btn btn-primary" value="Submit" />
           </div>
         </div>
       </form>
@@ -63,4 +68,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

@@ -8,8 +8,12 @@ function ViewPatients() {
     const [user, setUserData] = useState([]);
     useEffect(() => {
         async function fetchData() {
-          let user = await axios.get(`https://neosmile-crud.herokuapp.com/getPatient/${params.id}`
-          );
+          let user = await axios.get(`https://neosmile-crud.herokuapp.com/getPatient/${params.id}`,
+          {
+            headers: {
+              Authorization: window.localStorage.getItem('myapptoken'),
+            },
+          });
           setUserData(user.data);
         }
         fetchData();

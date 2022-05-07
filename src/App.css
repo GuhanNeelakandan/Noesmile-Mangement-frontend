@@ -11279,4 +11279,8 @@
   body.sidebar-toggled footer.sticky-footer {
     width: 100%;
   }
-  
+.logout{
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+  }

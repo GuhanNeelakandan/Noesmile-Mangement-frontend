@@ -28,7 +28,11 @@ function EditPatients() {
     useEffect(() => {
         async function fetchData() {
             try {
-                let editdata = await axios.get(`https://neosmile-crud.herokuapp.com/getPatient/${params.id}`)
+                let editdata = await axios.get(`https://neosmile-crud.herokuapp.com/getPatient/${params.id}`, {
+                    headers: {
+                        Authorization: window.localStorage.getItem('myapptoken'),
+                    },
+                })
                 setPatients({
                     serialNo: editdata.data.serialNo,
                     name: editdata.data.name,
@@ -47,7 +51,11 @@ function EditPatients() {
     }, [])
 
     const handleUpdate = async () => {
-        const updateData = await axios.put(`https://neosmile-crud.herokuapp.com/updatePatients/${params.id}`, patients).then((res) => {
+        const updateData = await axios.put(`https://neosmile-crud.herokuapp.com/updatePatients/${params.id}`, patients, {
+            headers: {
+                Authorization: window.localStorage.getItem('myapptoken'),
+            },
+        }).then((res) => {
             console.log(res)
         }).catch((err) => {
             console.log(err)
@@ -92,7 +100,9 @@ function EditPatients() {
                     <label>Status</label>
                     <input type="text" className="form-control" name="status" value={patients.status} onChange={handleChange} />
                 </div>
-                <button className="btn-btn-primary"  onClick={()=>handleUpdate()}>Update</button>
+                <div className="col-2 mt-2">
+                    <input type={'submit'} className="btn btn-primary" value={'Update'} onClick={() => handleUpdate()} />
+                </div>
             </div>
         </div>
     )

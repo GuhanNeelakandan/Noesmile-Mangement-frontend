@@ -25,7 +25,11 @@ function CreatePatients() {
     }
 
     const handleCreate = async () => {
-        const createData = await axios.post('https://neosmile-crud.herokuapp.com/createPatients', patients).then((res) => {
+        const createData = await axios.post('https://neosmile-crud.herokuapp.com/createPatients', patients,{
+            headers: {
+              Authorization: window.localStorage.getItem('myapptoken'),
+            },
+          }).then((res) => {
             console.log(res)
         }).catch((err) => {
             console.log(err)
@@ -71,7 +75,14 @@ function CreatePatients() {
                     <label>Status</label>
                     <input type="text" className="form-control" name="status" value={patients.status} onChange={handleChange} />
                 </div>
-                <button className="btn-btn-primary" onClick={()=>handleCreate()}>create</button>
+                <div className="col-2 mt-2">
+            <input
+              type={'submit'}
+              className="btn btn-primary"
+              value={'Create'}
+              onClick={()=>handleCreate()}
+            />
+          </div>
             </div>
         </div>
 

@@ -1,11 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import swal from 'sweetalert'
 
 function Patients() {
     let params = useParams();
-    console.log(params.id)
+    let navigate = useNavigate();
+    let handleLogout = () => {
+        window.localStorage.removeItem('myapptoken');
+        navigate('/login');
+      };
+
     const [patientsData,setPatients]=useState([])
     
     useEffect(()=>{
@@ -28,7 +33,11 @@ function Patients() {
         })
           .then((willDelete) => {
             if (willDelete) {
-              axios.delete(`https://neosmile-crud.herokuapp.com/deletePatients/${id}`)
+              axios.delete(`https://neosmile-crud.herokuapp.com/deletePatients/${id}`,{
+                headers: {
+                  Authorization: window.localStorage.getItem('myapptoken'),
+                },
+              })
                 .then(() => {
                   getData();
                 })
@@ -43,7 +52,11 @@ function Patients() {
 
       const getData=()=>{
         axios
-          .get(`https://neosmile-crud.herokuapp.com/getPatients`)
+          .get(`https://neosmile-crud.herokuapp.com/getPatients`,{
+            headers: {
+              Authorization: window.localStorage.getItem('myapptoken'),
+            },
+          })
           .then((getData) => {
             setPatients(getData.data);
           });
@@ -55,6 +68,8 @@ function Patients() {
                 <Link to={"/create-patients"} class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                     Create New <i class="fa fa-plus" aria-hidden="true"></i></Link>
             </div>
+            <div className="logout"><button onClick={handleLogout}  class="btn btn-danger" >Logout</button>  </div>
+            
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Patients details</h6>
@@ -110,6 +125,7 @@ function Patients() {
                             </tbody>
                         </table>
                     </div>
+                    
                 </div>
             </div>
         </>
