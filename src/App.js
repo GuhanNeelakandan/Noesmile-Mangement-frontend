@@ -7,7 +7,7 @@ import CreatePatients from './components/CreatePatients';
 import EditPatients from './components/EditPatients';
 import ViewPatients from './components/ViewPatients';
 import Login from './components/Login';
-import Register from './Register';
+import Register from './components/Register';
 
 
 function App() {
