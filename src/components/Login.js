@@ -22,9 +22,9 @@ function Login() {
     },
   });
   return (
-    <div className="container">
+    <div className="container ">
       <form onSubmit={formik.handleSubmit}>
-        <div className="row">
+        <div className="mx-auto flex-column row">
           <div className="col-6">
             <label>Email</label>
             <input
@@ -47,16 +47,18 @@ function Login() {
               value={formik.values.password}
             />
           </div>
-          <div className="col-2 mt-2">
-            <input
-              type={'submit'}
-              className="btn btn-primary"
-              value={'Login'}
-            />
+          <div className="d-flex col mt-4">
+            <div className="mr-5">
+              <input
+                type={'submit'}
+                className="btn btn-primary"
+                value={'Login'} />
+            </div>
+            <div>
+              <Link to={'/register'} className="btn btn-primary">SignUp</Link>
+            </div>
           </div>
-          <div className="col-2 mt-2">
-            <Link to={'/register'}className="btn btn-primary">SignUp</Link>
-          </div>
+
         </div>
       </form>
     </div>

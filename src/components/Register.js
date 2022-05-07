@@ -11,11 +11,30 @@ function Register() {
       email: '',
       password: '',
     },
+    validate: (values) => {
+      const errors = {}
+      if (!values.name) {
+        errors.name = "Requried";
+      } else if (values.name.length > 15) {
+        errors.name = "must be 15 characters or less"
+      }
+      if (!values.email) {
+        errors.email = "Requried";
+      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Invalid email address';
+      }
+      if (!values.password) {
+        errors.password = "Required";
+      }else if (values.password.length < 8) {
+        errors.password = "must be 8 characters"
+      }
+      return errors;
+    },
     onSubmit: async (values) => {
       try {
         await axios.post('https://neosmile-crud.herokuapp.com/register', values);
         navigate('/login');
-        alert("Successfully Registerd")
+        alert("Successfully Registerd & wait for Admin Confirmation")
       } catch (error) {
         console.log(error);
         alert('Something went wrong');
@@ -25,9 +44,9 @@ function Register() {
   return (
     <div className="container">
       <form onSubmit={formik.handleSubmit}>
-        <div className="row">
-          <div className="col-lg-12">
-            <label>Name</label>
+        <div className="mx-auto flex-column row">
+          <div className="col-6">
+            <label>Name<span style={{ color: "red" }}>*{formik.errors.name}</span></label>
             <input
               type={'text'}
               name="name"
@@ -37,8 +56,8 @@ function Register() {
               value={formik.values.name}
             />
           </div>
-          <div className="col-lg-12">
-            <label>Email</label>
+          <div className="col-6">
+            <label>Email<span style={{ color: "red" }}>*{formik.errors.email}</span></label>
             <input
               type={'email'}
               name="email"
@@ -48,8 +67,8 @@ function Register() {
               value={formik.values.email}
             />
           </div>
-          <div className="col-lg-12">
-            <label>Password</label>
+          <div className="col-6">
+            <label>Create Password<span style={{ color: "red" }}>*{formik.errors.password}</span></label>
             <input
               type={'password'}
               name="password"
@@ -60,7 +79,7 @@ function Register() {
             />
           </div>
           <div className="col-lg-12 mt-3">
-            <input type={'submit'} className="btn btn-primary" value="Submit" />
+            <input disabled={Object.keys(formik.errors).length !== 0} type={'submit'} className="btn btn-primary"/>
           </div>
         </div>
       </form>
