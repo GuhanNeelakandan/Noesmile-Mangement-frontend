@@ -1,34 +1,38 @@
 import './App.css';
 import Dashboard from './components/Dashboard';
 import Sidebar from './components/Sidebar';
-import Topbar from './components/Topbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Patients from './components/Patients';
 import CreatePatients from './components/CreatePatients';
 import EditPatients from './components/EditPatients';
 import ViewPatients from './components/ViewPatients';
+import Login from './components/Login';
+
 
 function App() {
+  const loginHandler=()=>{
+    alert();
+  };
   return (
-    <BrowserRouter>
-      <div id="wrapper">
-        <Sidebar />
-        <div id="content-wrapper" class="d-flex flex-column">
-          <div id="content">
-            <Topbar />
-            <div class="container-fluid">
-              <Routes>
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/patients" element={<Patients />} />
-                <Route path="/create-patients" element={<CreatePatients />} />
-                <Route path="/edit-patients/:id" element={<EditPatients />} />
-                <Route path="/view-patients/:id" element={<ViewPatients />} />
-              </Routes>
+      <BrowserRouter>
+        <div id="wrapper">
+          <Sidebar login={loginHandler}/>
+          <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+              <div class="container-fluid mt-5">
+                <Routes>
+                <Route path="/login" element={<Login />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/patients" element={<Patients />} />
+                  <Route path="/create-patients" element={<CreatePatients />} />
+                  <Route path="/edit-patients/:id" element={<EditPatients />} />
+                  <Route path="/view-patients/:id" element={<ViewPatients />} />
+                </Routes>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
   );
 }
 

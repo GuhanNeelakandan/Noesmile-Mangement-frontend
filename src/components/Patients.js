@@ -9,7 +9,7 @@ function Patients() {
     const [patientsData,setPatients]=useState([])
     
     useEffect(()=>{
-         axios.get('https://neosmile-crud.herokuapp.com/getPatients').then((res)=>{
+         axios.get('https://neosmile-crud.herokuapp.com/getPatients',).then((res)=>{
             setPatients(res.data)
         })
     },[])
