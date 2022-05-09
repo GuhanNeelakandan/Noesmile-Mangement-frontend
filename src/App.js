@@ -12,13 +12,10 @@ import User from './components/User';
 
 
 function App() {
-  const loginHandler = () => {
-    alert();
-  };
   return (
     <BrowserRouter>
       <div id="wrapper">
-        <Sidebar login={loginHandler} />
+        <Sidebar/>
         <div id="content-wrapper" class="d-flex flex-column">
           <div id="content">
             <div class="container-fluid mt-5">
