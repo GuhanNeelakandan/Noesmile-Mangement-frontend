@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+
 function Login() {
   let navigate = useNavigate();
   let formik = useFormik({
@@ -10,11 +11,23 @@ function Login() {
       username: '',
       password: '',
     },
+    validate: (values) => {
+      const errors = {}
+      if (!values.username) {
+        errors.username = "Email Missing";
+      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.username)) {
+        errors.username = 'Invalid email address';
+      }
+      if (!values.password) {
+        errors.password = "Password  missing";
+      }
+      return errors;
+    },
     onSubmit: async (values) => {
       try {
         let loginData = await axios.post('https://neosmile-crud.herokuapp.com/login', values);
         window.localStorage.setItem('myapptoken', loginData.data.token);
-        navigate('/patients');
+        {loginData.data.message==="login sucessfull"? navigate('/patients'):alert("Does not match")}
       } catch (error) {
         console.log(error);
         alert('Something went wrong');
@@ -26,7 +39,7 @@ function Login() {
       <form onSubmit={formik.handleSubmit}>
         <div className="mx-auto flex-column row">
           <div className="col-6">
-            <label>Email</label>
+            <label>Email <span style={{ color: "red" }}>{formik.errors.username}</span></label>
             <input
               type={'email'}
               className="form-control"
@@ -37,7 +50,7 @@ function Login() {
             />
           </div>
           <div className="col-6">
-            <label>Password</label>
+            <label >Password <span style={{ color: "red" }}>{formik.errors.password}</span></label>
             <input
               type={'password'}
               className="form-control"
@@ -49,7 +62,7 @@ function Login() {
           </div>
           <div className="d-flex col mt-4">
             <div className="mr-5">
-              <input
+              <input disabled={Object.keys(formik.errors).length !== 0}
                 type={'submit'}
                 className="btn btn-primary"
                 value={'Login'} />
