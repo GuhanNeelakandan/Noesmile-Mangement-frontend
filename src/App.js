@@ -9,6 +9,7 @@ import ViewPatients from './components/ViewPatients';
 import Login from './components/Login';
 import Register from './components/Register';
 import User from './components/User';
+import Appoinments from './components/Appoinments';
 
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
                 <Route path="/edit-patients/:id" element={<EditPatients />} />
                 <Route path="/view-patients/:id" element={<ViewPatients />} />
                 <Route path="/user" element={<User/>} />
+                <Route path="/appointments" element={<Appoinments/>} />
+                
               </Routes>
             </div>
           </div>

@@ -52,8 +52,12 @@ function Sidebar() {
 
             {/* <!-- Divider --> */}
             <hr class="sidebar-divider d-none d-md-block" />
+            <li class="nav-item">
+                <Link class="nav-link" to={"/appointments"}>
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Appointments</span></Link>
 
-            {/* <!-- Sidebar Toggler (Sidebar) --> */}
+            </li>
 
         </ul>
     )
