@@ -76,10 +76,10 @@ function Patients() {
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered text-uppercase" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Serial.No</th>
+                                    <th>OP.no</th>
                                     <th>Name</th>
                                     <th>Age</th>
                                     <th>Gender</th>
