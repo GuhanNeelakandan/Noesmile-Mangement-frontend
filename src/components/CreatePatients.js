@@ -8,18 +8,26 @@ function CreatePatients() {
     let formik = useFormik({
         initialValues: {
             serialNo: 0,
+            date:Date,
             name: "",
             age: 0,
             gender: "",
             mobile: 0,
             doctorName: "",
             amount: 0,
-            status: ""
+            status: "",
+            description:"",
         },
         validate: (values) => {
             const errors = {}
             if (!values.serialNo) {
                 errors.serialNo = "Requried";
+            }
+            if (!values.date) {
+                errors.date = "Requried";
+            }
+            if (!values.description) {
+                errors.description = "Requried";
             }
             if (!values.name) {
                 errors.name = "Requried";
@@ -71,6 +79,10 @@ function CreatePatients() {
                     <input type="number" className="form-control" name="serialNo" value={formik.values.serialNo} onChange={formik.handleChange} />
                 </div>
                 <div className="form-group col-sm-12 col-md-4 col-lg-6 col-xl-6 col-xxl-6 ">
+                    <label>Date<span style={{ color: "red" }}>*{formik.errors.date}</span></label>
+                    <input type="date" className="form-control" name="date" value={formik.values.date} onChange={formik.handleChange} />
+                </div>
+                <div className="form-group col-sm-12 col-md-4 col-lg-6 col-xl-6 col-xxl-6 ">
                     <label>Name<span style={{ color: "red" }}>*{formik.errors.name}</span></label>
                     <input type="text" className="form-control" name="name" value={formik.values.name} onChange={formik.handleChange} />
                 </div>
@@ -97,6 +109,10 @@ function CreatePatients() {
                 <div className="form-group col-sm-12 col-md-4 col-lg-6 col-xl-6 col-xxl-6 ">
                     <label>Status<span style={{ color: "red" }}>*{formik.errors.status}</span></label>
                     <input type="text" className="form-control" name="status" value={formik.values.status} onChange={formik.handleChange} />
+                </div>
+                <div className="form-group col-sm-12 col-md-4 col-lg-6 col-xl-6 col-xxl-6 ">
+                    <label>Description<span style={{ color: "red" }}>*{formik.errors.description}</span></label>
+                    <input type="text" className="form-control" name="description" value={formik.values.description} onChange={formik.handleChange} />
                 </div>
                 <div className="col-2 mt-2">
                     <input
