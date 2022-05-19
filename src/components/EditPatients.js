@@ -35,13 +35,15 @@ function EditPatients() {
                 })
                 setPatients({
                     serialNo: editdata.data.serialNo,
+                    date:editdata.data.date,
                     name: editdata.data.name,
                     age: editdata.data.age,
                     gender: editdata.data.gender,
                     mobile: editdata.data.mobile,
                     doctorName: editdata.data.doctorName,
                     amount: editdata.data.amount,
-                    status: editdata.data.status
+                    status: editdata.data.status,
+                    description:editdata.data.description
                 })
             } catch (error) {
                 console.log(error)
@@ -73,6 +75,10 @@ function EditPatients() {
                     <input type="number" className="form-control" name="serialNo" value={patients.serialNo} onChange={handleChange} />
                 </div>
                 <div className="form-group col-sm-12 col-md-4 col-lg-6 col-xl-6 col-xxl-6 ">
+                    <label>Date</label>
+                    <input type="date" className="form-control" name="date" value={patients.date} onChange={handleChange} />
+                </div>
+                <div className="form-group col-sm-12 col-md-4 col-lg-6 col-xl-6 col-xxl-6 ">
                     <label>Name</label>
                     <input type="text" className="form-control" name="name" value={patients.name} onChange={handleChange} />
                 </div>
@@ -99,6 +105,10 @@ function EditPatients() {
                 <div className="form-group col-sm-12 col-md-4 col-lg-6 col-xl-6 col-xxl-6 ">
                     <label>Status</label>
                     <input type="text" className="form-control" name="status" value={patients.status} onChange={handleChange} />
+                </div>
+                <div className="form-group col-sm-12 col-md-4 col-lg-6 col-xl-6 col-xxl-6 ">
+                    <label>Description</label>
+                    <input type="text" className="form-control" name="description" value={patients.description} onChange={handleChange} />
                 </div>
                 <div className="col-2 mt-2">
                     <input type={'submit'} className="btn btn-primary" value={'Update'} onClick={() => handleUpdate()} />

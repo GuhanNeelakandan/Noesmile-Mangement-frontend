@@ -80,6 +80,7 @@ function Patients() {
                             <thead>
                                 <tr>
                                     <th>OP.no</th>
+                                    <th>Date</th>
                                     <th>Name</th>
                                     <th>Age</th>
                                     <th>Gender</th>
@@ -95,6 +96,7 @@ function Patients() {
                                     patientsData.map((user)=>{
                                         return <tr>
                                         <td>{user.serialNo}</td>
+                                        <td>{user.date}</td>
                                         <td>{user.name}</td>
                                         <td>{user.age}</td>
                                         <td>{user.gender}</td>

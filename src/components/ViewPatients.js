@@ -26,13 +26,15 @@ function ViewPatients() {
                     <div className="row">
                         <div className="col-6">
                             <h3 class="card-title">Patients Details</h3>
-                            <p class="card-text">Serial.NO:{user.serialNo}</p>
-                            <p class="card-text">Name:{user.name}</p>
-                            <p class="card-text">Age:{user.age} </p>
-                            <p class="card-text">Gender:{user.gender}</p>
-                            <p class="card-text">Mobile:{user.doctorName}</p>
-                            <p class="card-text">Amount:{user.amount}</p>
-                            <p class="card-text">Status:{user.status}</p>
+                            <p class="card-text">Serial.NO:<strong>{user.serialNo}</strong></p>
+                            <p class="card-text">Date:<strong>{user.date}</strong></p>
+                            <p class="card-text">Name:<strong>{user.name}</strong></p>
+                            <p class="card-text">Age:<strong>{user.age} </strong></p>
+                            <p class="card-text">Gender:<strong>{user.gender}</strong></p>
+                            <p class="card-text">Mobile:<strong>{user.doctorName}</strong></p>
+                            <p class="card-text">Amount:<strong>{user.amount}</strong></p>
+                            <p class="card-text">Status:<strong>{user.status}</strong></p>
+                            <p class="card-text">Description:<strong>{user.description}</strong></p>
                             <div className="col-lg-6 mt-3">
                                 <input
                                     type={"submit"}
