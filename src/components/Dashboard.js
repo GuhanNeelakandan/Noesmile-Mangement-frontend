@@ -20,7 +20,7 @@ function Dashboard() {
         let completed=data.map((item)=>{
             if(item.status==="completed"){
                 status=status+1
-            }if(item.status==="onprocess"){
+            }if(item.status==="inprogress"){
                 process=process+1
             }
         })
@@ -110,7 +110,7 @@ function Dashboard() {
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     {/* font colour */}
-                                    <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">treatment On process</div>
+                                    <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">treatment inprogress</div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
                                          {processData}
                                         {/* progress design in if condition */}
